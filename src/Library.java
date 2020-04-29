@@ -7,39 +7,14 @@ import java.util.TreeSet;
 
 public class Library {
 
-    class ReadingLog {
-        LocalDateTime start;
-        LocalDateTime end;
-
-        public ReadingLog(LocalDateTime start, LocalDateTime end) {
-            this.start = start;
-            this.end = end;
-        }
-    }
-
-    class Logger extends Thread {
-        @Override
-        public void run() {
-            try {
-                while (true) {
-                    Thread.sleep(5000);
-                    printAllAvailabilityCount();
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-
-    public enum ReadingMaterialType {BOOK, TEXTBOOK, MAGAZINE}
-
     // The catalogue should contain reading material type and each subtype should
     // be shown by genre for books,  category for magazines and subject for textbooks.
     // Then all of the subtypes should be ordered by different criteria.
     private HashMap<ReadingMaterialType, HashMap<SubTypes, TreeSet<ReadingMaterial>>> catalogue;
     private HashMap<ReadingMaterial, ReadingLog> rentLog;
     private Logger logger;
+
+    public enum ReadingMaterialType {BOOK, TEXTBOOK, MAGAZINE}
 
     public Library() {
         this.catalogue = new HashMap<>();
@@ -92,5 +67,30 @@ public class Library {
         }
         System.out.println("All available reading materials in the library are : " + count);
     }
+
+    class ReadingLog {
+        LocalDateTime start;
+        LocalDateTime end;
+
+        public ReadingLog(LocalDateTime start, LocalDateTime end) {
+            this.start = start;
+            this.end = end;
+        }
+    }
+
+    class Logger extends Thread {
+        @Override
+        public void run() {
+            try {
+                while (true) {
+                    Thread.sleep(5000);
+                    printAllAvailabilityCount();
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
 }
