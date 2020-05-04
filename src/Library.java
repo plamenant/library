@@ -83,7 +83,6 @@ public class Library {
                 pw.println(e.getKey().getName() + " " + e.getValue().start);
             }
             pw.println("Total : " + list.size());
-            pw.close();
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
